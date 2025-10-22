@@ -19,6 +19,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Serin",
   description: "Serin project website",
+  icons: {
+    icon: "/serin_icon.png",
+  },
 };
 
 export default function RootLayout({
