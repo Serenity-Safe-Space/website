@@ -286,10 +286,12 @@
 
   .sparkle1, .sparkle2, .sparkle3 {
     font-size: 24px;
+    animation: none;
   }
 
   .heart {
     font-size: 28px;
+    animation: none;
   }
 
   .waveSection {

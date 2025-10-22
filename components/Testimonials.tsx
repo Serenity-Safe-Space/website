@@ -45,7 +45,7 @@ export const Testimonials: React.FC = () => {
       <div className="container">
         {/* Intro paragraph */}
         <p className={styles.intro}>
-          Every day, people come to Serin to let it out, feel lighter, and find a bit of calm. Here's what they're saying 💬
+          Every day, people come to Serin to let it out, feel lighter, and find a bit of calm. Here&apos;s what they&apos;re saying 💬
         </p>
 
         {/* Title and subtitle */}

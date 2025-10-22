@@ -271,6 +271,156 @@
 }
 
 /* ========================================
+   COMPACT LAYOUT (≤ 900px)
+   ======================================== */
+.compactWrapper {
+  background: linear-gradient(180deg, var(--purple-900) 0%, #0F0080 100%);
+  padding: var(--space-16) 0 var(--space-20);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.compactSection {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 var(--page-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  text-align: center;
+}
+
+.compactHeading {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 7vw, 48px);
+  line-height: 1.2;
+  font-weight: 500;
+  color: #f5f0ff;
+  margin: 0;
+}
+
+.compactHeading span {
+  color: var(--yellow-400);
+}
+
+.compactChatCard {
+  width: 100%;
+  max-width: 520px;
+  background: linear-gradient(135deg, rgba(76, 37, 160, 0.95), rgba(48, 16, 135, 0.95));
+  border-radius: 999px;
+  padding: clamp(12px, 3vw, 18px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  box-shadow: 0 28px 60px rgba(13, 0, 77, 0.45);
+}
+
+.compactMic,
+.compactArrow {
+  width: clamp(52px, 14vw, 64px);
+  height: clamp(52px, 14vw, 64px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.compactMic {
+  background: var(--yellow-400);
+  color: var(--purple-900);
+  box-shadow: 0 16px 36px rgba(255, 235, 94, 0.3);
+}
+
+.compactArrow {
+  background: rgba(239, 233, 255, 0.14);
+  color: rgba(239, 233, 255, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(244, 237, 255, 0.2);
+}
+
+.compactPrompt {
+  flex: 1 1 220px;
+  background: white;
+  color: #311d76;
+  border-radius: 999px;
+  padding: clamp(12px, 3vw, 18px) clamp(22px, 8vw, 32px);
+  font-family: var(--font-body);
+  font-size: clamp(17px, 4vw, 18px);
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: inset 0 0 0 1px rgba(76, 37, 160, 0.12);
+}
+
+.compactSummary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+  width: 100%;
+  max-width: 520px;
+}
+
+.compactBadge {
+  width: clamp(96px, 22vw, 128px);
+  height: clamp(96px, 22vw, 128px);
+  border-radius: 50%;
+  background: var(--yellow-400);
+  color: var(--purple-900);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 10vw, 48px);
+  font-weight: 700;
+  box-shadow: 0 22px 46px rgba(255, 235, 94, 0.35);
+}
+
+.compactCopy {
+  font-size: clamp(17px, 4.2vw, 19px);
+  line-height: 1.6;
+  color: rgba(239, 233, 255, 0.92);
+  max-width: 420px;
+  margin: 0;
+  text-align: center;
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .compactSection {
+    gap: var(--space-12);
+  }
+
+  .compactChatCard {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .compactPrompt {
+    text-align: left;
+  }
+
+  .compactSummary {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-6);
+  }
+
+  .compactCopy {
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .compactWrapper {
+    padding: var(--space-12) 0 var(--space-16);
+  }
+}
+
+/* ========================================
    RESPONSIVE
    ======================================== */
 @media (max-width: 900px) {

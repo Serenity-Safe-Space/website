@@ -171,12 +171,14 @@
     font-size: 24px;
     top: 3%;
     left: 3%;
+    animation: none;
   }
 
   .decorStar {
     font-size: 20px;
     top: 8%;
     right: 5%;
+    animation: none;
   }
 
   .intro {

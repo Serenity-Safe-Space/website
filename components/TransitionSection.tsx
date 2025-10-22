@@ -17,18 +17,58 @@ export const TransitionSection: React.FC = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const highlightRef = useRef<HTMLSpanElement>(null);
+  const [isCompact, setIsCompact] = useState(false);
   const [progress, setProgress] = useState(0);
   const boundsRef = useRef({ start: 0, range: 1 });
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | undefined>(undefined);
   const [highlightBase, setHighlightBase] = useState({ width: 0, height: 0 });
   const [targetSize, setTargetSize] = useState({ width: 0, height: 0 });
   const highlightBaseRef = useRef({ width: 0, height: 0 });
+  const targetSizeRef = useRef({ width: 0, height: 0 });
   const initialCenterRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const stageVectorRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const finalVectorRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const finalChatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const handleResize = () => {
+      const next = window.innerWidth <= 900;
+      setIsCompact((prev) => (prev === next ? prev : next));
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (isCompact) {
+      setProgress((prev) => (prev === 0 ? prev : 0));
+      if (highlightBaseRef.current.width !== 0 || highlightBaseRef.current.height !== 0) {
+        highlightBaseRef.current = { width: 0, height: 0 };
+      }
+      if (initialCenterRef.current.x !== 0 || initialCenterRef.current.y !== 0) {
+        initialCenterRef.current = { x: 0, y: 0 };
+      }
+      stageVectorRef.current = { x: 0, y: 0 };
+      finalVectorRef.current = { x: 0, y: 0 };
+      targetSizeRef.current = { width: 0, height: 0 };
+      setHighlightBase((prev) => (prev.width === 0 && prev.height === 0 ? prev : { width: 0, height: 0 }));
+      setTargetSize((prev) => (prev.width === 0 && prev.height === 0 ? prev : { width: 0, height: 0 }));
+      return;
+    }
+
     const updateProgress = () => {
       const wrapper = wrapperRef.current;
       if (!wrapper) {
@@ -97,10 +137,17 @@ export const TransitionSection: React.FC = () => {
         const chatRect = finalChatRef.current?.getBoundingClientRect();
 
         if (chatRect) {
-          setTargetSize({
+          const nextSize = {
             width: chatRect.width,
             height: chatRect.height,
-          });
+          };
+          const hasChanged =
+            targetSizeRef.current.width !== nextSize.width ||
+            targetSizeRef.current.height !== nextSize.height;
+          if (hasChanged) {
+            targetSizeRef.current = nextSize;
+            setTargetSize(nextSize);
+          }
           finalVectorRef.current = {
             x: chatRect.left + chatRect.width / 2 - initialCenterRef.current.x,
             y: chatRect.top + chatRect.height / 2 - initialCenterRef.current.y,
@@ -108,11 +155,13 @@ export const TransitionSection: React.FC = () => {
         } else {
           const desiredWidth = Math.min(720, Math.max(highlightRect.width * 1.9, stageRect.width * 0.68));
           const desiredHeight = Math.max(highlightRect.height * 0.78, 90);
-          if (targetSize.width === 0 || targetSize.height === 0) {
-            setTargetSize({
+          if (targetSizeRef.current.width === 0 || targetSizeRef.current.height === 0) {
+            const nextSize = {
               width: desiredWidth,
               height: desiredHeight,
-            });
+            };
+            targetSizeRef.current = nextSize;
+            setTargetSize(nextSize);
           }
           finalVectorRef.current = stageVectorRef.current;
         }
@@ -132,24 +181,67 @@ export const TransitionSection: React.FC = () => {
     };
 
     updateBounds();
-    if ('fonts' in document) {
-      (document as any).fonts.ready.then(() => {
-        highlightBaseRef.current = { width: 0, height: 0 };
-        setHighlightBase({ width: 0, height: 0 });
-        updateBounds();
-      });
-    }
+    let fontsCancelled = false;
+    const fontFaceSet = (document as Document & { fonts?: FontFaceSet }).fonts;
+    fontFaceSet?.ready.then(() => {
+      if (fontsCancelled) {
+        return;
+      }
+      highlightBaseRef.current = { width: 0, height: 0 };
+      setHighlightBase({ width: 0, height: 0 });
+      updateBounds();
+    });
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', updateBounds);
 
     return () => {
+      fontsCancelled = true;
       if (rafRef.current != null) {
         window.cancelAnimationFrame(rafRef.current);
+        rafRef.current = undefined;
       }
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', updateBounds);
     };
-  }, []);
+  }, [isCompact]);
+
+  if (isCompact) {
+    return (
+      <div className={styles.compactWrapper}>
+        <section className={styles.compactSection} aria-label="Feel better transition">
+          <h2 className={styles.compactHeading}>
+            You can <span>feel better</span> in one chat.
+          </h2>
+          <div className={styles.compactChatCard}>
+            <div className={styles.compactMic} aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 2.5C10.62 2.5 9.5 3.62 9.5 5V12.5C9.5 13.88 10.62 15 12 15C13.38 15 14.5 13.88 14.5 12.5V5C14.5 3.62 13.38 2.5 12 2.5Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M18.5 10V12.25C18.5 15.41 15.91 18 12.75 18H11.25C8.09 18 5.5 15.41 5.5 12.25V10H4V12.25C4 16.25 7.25 19.5 11.25 19.5V22H13.75V19.5C17.75 19.5 21 16.25 21 12.25V10H18.5Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <div className={styles.compactPrompt}>How are you feeling today?</div>
+            <div className={styles.compactArrow} aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M8 5L18 12L8 19V5Z" fill="currentColor" />
+              </svg>
+            </div>
+          </div>
+          <div className={styles.compactSummary}>
+            <div className={styles.compactBadge}>87%</div>
+            <p className={styles.compactCopy}>
+              It&apos;s how your mood can improve in just one conversation.
+            </p>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   const leadingFade = 1 - smoothStep(0.2, 0.34, progress);
   const trailingFade = 1 - smoothStep(0.26, 0.38, progress);

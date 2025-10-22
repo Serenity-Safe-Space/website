@@ -131,15 +131,16 @@
 
   .illustrationImage {
     width: min(600px, 90vw);
-    transform: rotate(-6deg) translate(12px, 0);
+    transform: rotate(-3deg) translate(0, 0);
+    animation: floatTablet 12s ease-in-out infinite;
   }
 
-  @keyframes float {
+  @keyframes floatTablet {
     0%, 100% {
-      transform: rotate(-6deg) translate(12px, 0);
+      transform: rotate(-3deg) translate(0, 0);
     }
     50% {
-      transform: rotate(-4deg) translate(12px, -14px);
+      transform: rotate(-1deg) translate(0, -12px);
     }
   }
 }
@@ -170,15 +171,7 @@
 
   .illustrationImage {
     width: min(420px, 100%);
-    transform: rotate(-4deg) translate(6px, -6px);
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: rotate(-4deg) translate(6px, -6px);
-    }
-    50% {
-      transform: rotate(-2deg) translate(6px, -18px);
-    }
+    transform: none;
+    animation: none;
   }
 }
