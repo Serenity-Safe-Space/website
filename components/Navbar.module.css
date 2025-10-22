@@ -1,0 +1,146 @@
+.navbar {
+  background: var(--bg);
+  padding: var(--space-4) 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(158, 100, 216, 0.1);
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.navContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+/* Left side - Brand */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  text-decoration: none;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: var(--surface);
+  padding: 4px;
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--purple-900);
+  letter-spacing: -0.01em;
+}
+
+/* Right side */
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+/* Social Icons */
+.socialIcons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.iconLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--purple-900);
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.iconLink:hover {
+  background: var(--surface);
+  transform: translateY(-2px);
+}
+
+.iconLink svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* CTA Link */
+.ctaLink {
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* Tablet breakpoint */
+@media (max-width: 900px) {
+  .brandName {
+    font-size: 28px;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .navRight {
+    gap: var(--space-4);
+  }
+
+  .socialIcons {
+    gap: var(--space-2);
+  }
+
+  .iconLink {
+    width: 36px;
+    height: 36px;
+  }
+
+  .iconLink svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 600px) {
+  .navbar {
+    padding: var(--space-2) 0;
+  }
+
+  .brandName {
+    font-size: 24px;
+  }
+
+  .logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .socialIcons {
+    display: none;
+  }
+
+  .navRight {
+    gap: var(--space-2);
+  }
+}
+
+/* Show only 2 icons on small tablets */
+@media (max-width: 700px) and (min-width: 601px) {
+  .iconLink:nth-child(3),
+  .iconLink:nth-child(4) {
+    display: none;
+  }
+}

@@ -1,0 +1,184 @@
+.hero {
+  background: linear-gradient(120deg, #F6EAFF 0%, #F1E3FF 55%, #F9EFFF 100%);
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(72px, 12vh, 120px) 0;
+}
+
+.heroContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(40px, 8vw, 160px);
+  width: 100%;
+}
+
+/* Left column - Text content */
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.8vw, 32px);
+  max-width: 520px;
+  z-index: 2;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 6vw, 88px);
+  line-height: 1.05;
+  font-weight: 700;
+  color: #321E73;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: clamp(18px, 1.8vw, 21px);
+  line-height: 1.7;
+  color: rgba(50, 30, 115, 0.85);
+  margin: 0;
+  max-width: 420px;
+  font-weight: 400;
+}
+
+.ctaLink {
+  display: inline-flex;
+  text-decoration: none;
+  margin-top: clamp(16px, 3vw, 32px);
+  width: fit-content;
+}
+
+/* Right column - Illustration */
+.illustration {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  pointer-events: none;
+}
+
+.illustration::before {
+  content: '';
+  position: absolute;
+  width: min(640px, 110%);
+  height: min(640px, 110%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 45%, rgba(255, 255, 255, 0.7) 0%, rgba(244, 226, 255, 0.8) 55%, rgba(240, 218, 255, 0.2) 100%);
+  filter: blur(4px);
+  transform: translate(50px, -10px) rotate(-6deg);
+}
+
+.illustrationImage {
+  width: min(720px, 115%);
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  transform: rotate(-8deg) translate(42px, 6px);
+  animation: float 8s ease-in-out infinite;
+  filter: drop-shadow(0 28px 60px rgba(48, 29, 114, 0.18));
+}
+
+/* Floating animation for the llama */
+@keyframes float {
+  0%, 100% {
+    transform: rotate(-8deg) translate(42px, 6px);
+  }
+  50% {
+    transform: rotate(-6deg) translate(42px, -12px);
+  }
+}
+
+/* Tablet breakpoint */
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    padding: 96px 0;
+  }
+
+  .heroContent {
+    flex-direction: column;
+    gap: 80px;
+    text-align: center;
+  }
+
+  .textContent {
+    align-items: center;
+    max-width: 640px;
+  }
+
+  .subtitle {
+    max-width: 520px;
+  }
+
+  .ctaLink {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .illustration {
+    width: 100%;
+  }
+
+  .illustration::before {
+    width: 520px;
+    height: 520px;
+    transform: translate(40px, -30px) rotate(-4deg);
+  }
+
+  .illustrationImage {
+    width: min(600px, 90vw);
+    transform: rotate(-6deg) translate(12px, 0);
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: rotate(-6deg) translate(12px, 0);
+    }
+    50% {
+      transform: rotate(-4deg) translate(12px, -14px);
+    }
+  }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 600px) {
+  .hero {
+    min-height: auto;
+    padding: var(--space-12) 0 var(--space-16);
+  }
+
+  .heroContent {
+    gap: var(--space-12);
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .illustration {
+    height: auto;
+  }
+
+  .illustrationImage {
+    width: min(420px, 100%);
+    transform: rotate(-4deg) translate(6px, -6px);
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: rotate(-4deg) translate(6px, -6px);
+    }
+    50% {
+      transform: rotate(-2deg) translate(6px, -18px);
+    }
+  }
+}

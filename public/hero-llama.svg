@@ -1,0 +1,33 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder for Serin llama mascot -->
+  <!-- Replace this file with the actual hero-llama.png from your design -->
+
+  <!-- Background circle -->
+  <circle cx="300" cy="300" r="250" fill="#F7F5FF"/>
+
+  <!-- Simple llama shape placeholder -->
+  <g transform="translate(200, 180)">
+    <!-- Head -->
+    <ellipse cx="100" cy="120" rx="60" ry="70" fill="#E8E3FF"/>
+
+    <!-- Ears -->
+    <ellipse cx="70" cy="80" rx="15" ry="35" fill="#E8E3FF"/>
+    <ellipse cx="130" cy="80" rx="15" ry="35" fill="#E8E3FF"/>
+
+    <!-- Sunglasses -->
+    <rect x="60" y="110" width="80" height="25" rx="12" fill="#1A1331"/>
+    <rect x="65" y="115" width="30" height="15" rx="7" fill="#1A1331" opacity="0.7"/>
+    <rect x="105" y="115" width="30" height="15" rx="7" fill="#1A1331" opacity="0.7"/>
+
+    <!-- Nose/snout -->
+    <ellipse cx="100" cy="155" rx="25" ry="20" fill="#DDD6F3"/>
+
+    <!-- Body (simple) -->
+    <ellipse cx="100" cy="220" rx="70" ry="80" fill="#E8E3FF"/>
+  </g>
+
+  <!-- Text indicator -->
+  <text x="300" y="520" font-family="Inter, system-ui" font-size="16" fill="#9E64D8" text-anchor="middle">
+    Replace with hero-llama.png
+  </text>
+</svg>

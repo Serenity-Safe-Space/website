@@ -1,0 +1,206 @@
+.testimonialsSection {
+  background: linear-gradient(180deg, #F7F5FF 0%, #EDE9FE 100%);
+  padding: var(--space-24) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ========================================
+   DECORATIVE ELEMENTS
+   ======================================== */
+.decorHeart {
+  position: absolute;
+  top: 8%;
+  left: 8%;
+  font-size: 40px;
+  opacity: 0.8;
+  animation: float 4s ease-in-out infinite;
+}
+
+.decorStar {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  font-size: 36px;
+  opacity: 0.8;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.8;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(15deg) scale(1.1);
+  }
+}
+
+/* ========================================
+   TEXT CONTENT
+   ======================================== */
+.intro {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--purple-700);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-12);
+  font-weight: 400;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 52px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--purple-900);
+  text-align: center;
+  margin: 0 0 var(--space-4);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--ink);
+  text-align: center;
+  margin: 0 auto var(--space-16);
+  max-width: 600px;
+  opacity: 0.85;
+}
+
+/* ========================================
+   TESTIMONIALS GRID
+   ======================================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Create staggered/masonry effect */
+.grid > :nth-child(1) {
+  grid-row: span 1;
+}
+
+.grid > :nth-child(2) {
+  grid-row: span 1;
+  margin-top: var(--space-8);
+}
+
+.grid > :nth-child(3) {
+  grid-row: span 1;
+}
+
+.grid > :nth-child(4) {
+  grid-row: span 1;
+  margin-top: var(--space-8);
+}
+
+.grid > :nth-child(5) {
+  grid-row: span 1;
+  margin-top: var(--space-4);
+}
+
+.grid > :nth-child(6) {
+  grid-row: span 1;
+  margin-top: var(--space-12);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .testimonialsSection {
+    padding: var(--space-20) 0;
+  }
+
+  .decorHeart {
+    font-size: 32px;
+    top: 5%;
+    left: 5%;
+  }
+
+  .decorStar {
+    font-size: 28px;
+    top: 12%;
+    right: 8%;
+  }
+
+  .intro {
+    font-size: 17px;
+    margin-bottom: var(--space-8);
+  }
+
+  .title {
+    font-size: 42px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    margin-bottom: var(--space-12);
+  }
+
+  .grid {
+    gap: var(--space-4);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .testimonialsSection {
+    padding: var(--space-16) 0;
+  }
+
+  .decorHeart {
+    font-size: 24px;
+    top: 3%;
+    left: 3%;
+  }
+
+  .decorStar {
+    font-size: 20px;
+    top: 8%;
+    right: 5%;
+  }
+
+  .intro {
+    font-size: 16px;
+    margin-bottom: var(--space-6);
+  }
+
+  .title {
+    font-size: 32px;
+    padding: 0 var(--space-4);
+  }
+
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: var(--space-8);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  /* Remove staggered margins on mobile */
+  .grid > * {
+    margin-top: 0 !important;
+  }
+}

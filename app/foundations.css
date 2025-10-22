@@ -1,0 +1,107 @@
+/**
+ * Serin Design System Foundations
+ * Reference this file for all design tokens and variables
+ */
+
+/* ========================================
+   FONT DECLARATIONS
+   ======================================== */
+@font-face {
+  font-family: 'Hangyaboly';
+  src: url('/fonts/Hangyaboly.ttf') format('truetype');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ========================================
+     COLORS
+     ======================================== */
+  --bg: #FFFFFF;
+  --ink: #1A1331;
+  --purple-900: #1800AD;
+  --purple-700: #6B1FAD;
+  --purple-300: #9E64D8;
+  --yellow-400: #FFEB5B;
+  --surface: #F7F5FF;
+
+  /* ========================================
+     TYPOGRAPHY
+     ======================================== */
+  --font-display: "Hangyaboly", "Poppins", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Font sizes & line heights - Desktop */
+  --text-display-xl: 64px;
+  --leading-display-xl: 72px;
+
+  --text-h1: 48px;
+  --leading-h1: 56px;
+
+  --text-h2: 36px;
+  --leading-h2: 44px;
+
+  --text-body-l: 20px;
+  --leading-body-l: 32px;
+
+  --text-body-m: 16px;
+  --leading-body-m: 26px;
+
+  --text-label: 14px;
+  --leading-label: 22px;
+
+  /* ========================================
+     SPACING SCALE
+     ======================================== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ========================================
+     LAYOUT
+     ======================================== */
+  --container-max: 1200px;
+  --page-padding: clamp(16px, 4vw, 40px);
+  --grid-gap: 24px;
+
+  /* ========================================
+     CORNERS & SHADOWS
+     ======================================== */
+  --radius-card: 14px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  /* ========================================
+     BREAKPOINTS
+     ======================================== */
+  --bp-tablet: 900px;
+  --bp-mobile: 600px;
+}
+
+/* Mobile typography adjustments */
+@media (max-width: 600px) {
+  :root {
+    --text-display-xl: 36px;
+    --leading-display-xl: 44px;
+
+    --text-h1: 30px;
+    --leading-h1: 38px;
+
+    --text-h2: 24px;
+    --leading-h2: 32px;
+
+    --text-body-l: 18px;
+    --leading-body-l: 28px;
+
+    --text-body-m: 15px;
+    --leading-body-m: 24px;
+  }
+}

@@ -1,0 +1,56 @@
+.button {
+  font-family: var(--font-body);
+  font-size: var(--text-body-m);
+  line-height: var(--leading-body-m);
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary: Yellow pill with dark text */
+.primary {
+  background: var(--yellow-400);
+  color: var(--ink);
+  border-color: var(--yellow-400);
+}
+
+.primary:hover:not(:disabled) {
+  background: #FFE933;
+  border-color: #FFE933;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 235, 91, 0.4);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Secondary: Purple outline */
+.secondary {
+  background: transparent;
+  color: var(--purple-700);
+  border-color: var(--purple-700);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--purple-700);
+  color: var(--bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 31, 173, 0.3);
+}
+
+.secondary:active:not(:disabled) {
+  transform: translateY(0);
+}
