@@ -1,5 +1,5 @@
 .testimonialsSection {
-  background: linear-gradient(180deg, #F7F5FF 0%, #EDE9FE 100%);
+  background: linear-gradient(180deg, #0F0080 0%, #5B3A9E 10%, #8B6BB8 25%, #B08FD6 50%, #D5BFEC 75%, #EDE9FE 100%);
   padding: var(--space-24) 0;
   position: relative;
   overflow: hidden;

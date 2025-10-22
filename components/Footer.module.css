@@ -7,7 +7,7 @@
    UPPER SECTION - Light Purple CTA
    ======================================== */
 .upperSection {
-  background: linear-gradient(180deg, #B794F6 0%, #A78BFA 100%);
+  background: linear-gradient(180deg, #EDE9FE 0%, #D5BFEC 15%, #B794F6 40%, #A78BFA 100%);
   padding: var(--space-24) var(--page-padding) 120px;
   position: relative;
   overflow: visible;

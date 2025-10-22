@@ -1,7 +1,7 @@
 .transitionWrapper {
   position: relative;
   height: 220vh;
-  background: linear-gradient(180deg, var(--purple-900) 0%, #0F0080 100%);
+  background: linear-gradient(180deg, #E8D5FF 0%, #C8A3F0 8%, var(--purple-900) 20%, #0F0080 100%);
 }
 
 .transitionSection {
@@ -274,7 +274,7 @@
    COMPACT LAYOUT (≤ 900px)
    ======================================== */
 .compactWrapper {
-  background: linear-gradient(180deg, var(--purple-900) 0%, #0F0080 100%);
+  background: linear-gradient(180deg, #E8D5FF 0%, #C8A3F0 8%, var(--purple-900) 20%, #0F0080 100%);
   padding: var(--space-16) 0 var(--space-20);
   color: white;
   position: relative;
