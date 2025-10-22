@@ -12,7 +12,7 @@ export const Navbar: React.FC = () => {
           {/* Left side - Logo + Brand */}
           <div className={styles.brand}>
             <Image
-              src="/end-llama.png"
+              src="/serin_icon.png"
               alt="Serin logo"
               width={60}
               height={60}
