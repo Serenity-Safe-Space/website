@@ -22,15 +22,19 @@
 /* Primary: Yellow pill with dark text */
 .primary {
   background: var(--yellow-400);
-  color: var(--ink);
+  color: #2D1B69;
   border-color: var(--yellow-400);
+  font-size: clamp(18px, 2vw, 24px);
+  padding: clamp(16px, 2vw, 22px) clamp(48px, 6vw, 72px);
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(255, 235, 91, 0.3);
 }
 
 .primary:hover:not(:disabled) {
   background: #FFE933;
   border-color: #FFE933;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 235, 91, 0.4);
+  box-shadow: 0 8px 24px rgba(255, 235, 91, 0.4);
 }
 
 .primary:active:not(:disabled) {
