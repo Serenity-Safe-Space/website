@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import React, { useEffect, useState, useRef } from 'react';
 import styles from './TransitionSection.module.css';
 
@@ -19,6 +20,7 @@ export const TransitionSection: React.FC = () => {
   const highlightRef = useRef<HTMLSpanElement>(null);
   const [isCompact, setIsCompact] = useState(false);
   const [progress, setProgress] = useState(0);
+  const progressRef = useRef(0);
   const boundsRef = useRef({ start: 0, range: 1 });
   const rafRef = useRef<number | undefined>(undefined);
   const [highlightBase, setHighlightBase] = useState({ width: 0, height: 0 });
@@ -29,6 +31,36 @@ export const TransitionSection: React.FC = () => {
   const stageVectorRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const finalVectorRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const finalChatRef = useRef<HTMLDivElement>(null);
+  const debugStepRef = useRef(-1);
+
+  const updateFinalTarget = () => {
+    const chat = finalChatRef.current;
+    if (!chat) {
+      return;
+    }
+    const initial = initialCenterRef.current;
+    if (initial.x === 0 && initial.y === 0) {
+      return;
+    }
+
+    const rect = chat.getBoundingClientRect();
+    const nextSize = {
+      width: rect.width,
+      height: rect.height,
+    };
+    const sizeChanged =
+      Math.abs(targetSizeRef.current.width - nextSize.width) > 0.5 ||
+      Math.abs(targetSizeRef.current.height - nextSize.height) > 0.5;
+    if (sizeChanged) {
+      targetSizeRef.current = nextSize;
+      setTargetSize(nextSize);
+    }
+
+    finalVectorRef.current = {
+      x: rect.left + rect.width / 2 - initial.x,
+      y: rect.top + rect.height / 2 - initial.y,
+    };
+  };
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -54,6 +86,7 @@ export const TransitionSection: React.FC = () => {
     }
 
     if (isCompact) {
+      progressRef.current = 0;
       setProgress((prev) => (prev === 0 ? prev : 0));
       if (highlightBaseRef.current.width !== 0 || highlightBaseRef.current.height !== 0) {
         highlightBaseRef.current = { width: 0, height: 0 };
@@ -79,7 +112,32 @@ export const TransitionSection: React.FC = () => {
       const raw = range <= 0 ? 0 : (scrollY - start) / range;
       const next = clamp(raw);
 
+      progressRef.current = next;
       setProgress((prev) => (Math.abs(prev - next) < 0.001 ? prev : next));
+
+      updateFinalTarget();
+
+      if (process.env.NODE_ENV !== 'production') {
+        const snapshot = Math.round(next * 20);
+        if (snapshot !== debugStepRef.current) {
+          debugStepRef.current = snapshot;
+          const stage = stageVectorRef.current;
+          const final = finalVectorRef.current;
+          const hasFinal = Math.abs(final.x) > 0.001 || Math.abs(final.y) > 0.001;
+          const travelTarget = hasFinal
+            ? Math.max(final.y, stage.y)
+            : stage.y;
+          const travelProgress = smoothStep(0.08, 0.84, next);
+          const highlightY = travelTarget * travelProgress;
+          console.log('[transition-debug]', {
+            progress: Number((snapshot / 20).toFixed(2)),
+            stageVectorY: Number(stage.y.toFixed(2)),
+            finalVectorY: Number(final.y.toFixed(2)),
+            travelTarget: Number(travelTarget.toFixed(2)),
+            highlightY: Number(highlightY.toFixed(2)),
+          });
+        }
+      }
     };
 
     const updateBounds = () => {
@@ -104,26 +162,49 @@ export const TransitionSection: React.FC = () => {
         const stageRect = stage.getBoundingClientRect();
         const highlightRect = highlight.getBoundingClientRect();
         const stageTargetX = stageRect.left + stageRect.width / 2;
-        const stageTargetY = stageRect.top + stageRect.height * 0.58;
+        const stageTargetY = stageRect.top + stageRect.height * 0.5;
         const highlightCenterX = highlightRect.left + highlightRect.width / 2;
         const highlightCenterY = highlightRect.top + highlightRect.height / 2;
 
-        const initialCenter = initialCenterRef.current;
-        if (initialCenter.x === 0 && initialCenter.y === 0) {
-          initialCenterRef.current = {
+        if (progressRef.current < 0.02 || (initialCenterRef.current.x === 0 && initialCenterRef.current.y === 0)) {
+          const nextInitial = {
             x: highlightCenterX,
             y: highlightCenterY,
           };
+          if (
+            Math.abs(initialCenterRef.current.x - nextInitial.x) > 0.5 ||
+            Math.abs(initialCenterRef.current.y - nextInitial.y) > 0.5
+          ) {
+            initialCenterRef.current = nextInitial;
+          } else if (initialCenterRef.current.x === 0 && initialCenterRef.current.y === 0) {
+            initialCenterRef.current = nextInitial;
+          }
+          const baseDimensions = {
+            width: highlightRect.width,
+            height: highlightRect.height,
+          };
+          const baseChanged =
+            Math.abs(highlightBaseRef.current.width - baseDimensions.width) > 0.5 ||
+            Math.abs(highlightBaseRef.current.height - baseDimensions.height) > 0.5;
+          if (baseChanged) {
+            highlightBaseRef.current = baseDimensions;
+            setHighlightBase(baseDimensions);
+          }
+        } else if (highlightBaseRef.current.width === 0 || highlightBaseRef.current.height === 0) {
+          const baseDimensions = {
+            width: highlightRect.width,
+            height: highlightRect.height,
+          };
+          highlightBaseRef.current = baseDimensions;
+          setHighlightBase(baseDimensions);
         }
 
+        const stageHeight = stageRect.height;
         const stageVector = {
           x: stageTargetX - initialCenterRef.current.x,
           y: stageTargetY - initialCenterRef.current.y,
         };
         stageVectorRef.current = stageVector;
-        if (finalVectorRef.current.x === 0 && finalVectorRef.current.y === 0) {
-          finalVectorRef.current = stageVector;
-        }
 
         if (highlightBaseRef.current.width === 0 || highlightBaseRef.current.height === 0) {
           const baseDimensions = {
@@ -148,9 +229,11 @@ export const TransitionSection: React.FC = () => {
             targetSizeRef.current = nextSize;
             setTargetSize(nextSize);
           }
+          const downwardBias = stageHeight * 0.28;
           finalVectorRef.current = {
             x: chatRect.left + chatRect.width / 2 - initialCenterRef.current.x,
-            y: chatRect.top + chatRect.height / 2 - initialCenterRef.current.y,
+            y:
+              chatRect.top + chatRect.height / 2 - initialCenterRef.current.y + downwardBias,
           };
         } else {
           const desiredWidth = Math.min(720, Math.max(highlightRect.width * 1.9, stageRect.width * 0.68));
@@ -163,7 +246,18 @@ export const TransitionSection: React.FC = () => {
             targetSizeRef.current = nextSize;
             setTargetSize(nextSize);
           }
-          finalVectorRef.current = stageVectorRef.current;
+         finalVectorRef.current = stageVectorRef.current;
+        }
+
+        const currentFinal = finalVectorRef.current;
+        if (Math.abs(currentFinal.x) > 0.001 || Math.abs(currentFinal.y) > 0.001) {
+          const minDownward = stageVector.y + stageHeight * 0.75;
+          if (currentFinal.y <= minDownward) {
+            finalVectorRef.current = {
+              x: currentFinal.x,
+              y: minDownward,
+            };
+          }
         }
       }
 
@@ -210,7 +304,7 @@ export const TransitionSection: React.FC = () => {
       <div className={styles.compactWrapper}>
         <section className={styles.compactSection} aria-label="Feel better transition">
           <h2 className={styles.compactHeading}>
-            You can <span>feel better</span> in one chat.
+            Your mood can improve in <span>1 conversation.</span>
           </h2>
           <div className={styles.compactChatCard}>
             <div className={styles.compactMic} aria-hidden="true">
@@ -225,18 +319,13 @@ export const TransitionSection: React.FC = () => {
                 />
               </svg>
             </div>
-            <div className={styles.compactPrompt}>How are you feeling today?</div>
-            <div className={styles.compactArrow} aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M8 5L18 12L8 19V5Z" fill="currentColor" />
-              </svg>
-            </div>
+            <div className={styles.compactPrompt}>Feel better</div>
           </div>
           <div className={styles.compactSummary}>
-            <div className={styles.compactBadge}>87%</div>
-            <p className={styles.compactCopy}>
-              It&apos;s how your mood can improve in just one conversation.
-            </p>
+            <div className={styles.compactGraph}>
+              <Image src="/serin-graph.png" alt="Mood improvement graph" width={160} height={120} priority />
+            </div>
+            <div className={styles.compactStat}>67%</div>
           </div>
         </section>
       </div>
@@ -246,28 +335,27 @@ export const TransitionSection: React.FC = () => {
   const leadingFade = 1 - smoothStep(0.2, 0.34, progress);
   const trailingFade = 1 - smoothStep(0.26, 0.38, progress);
   const leadingLift = lerp(0, -24, smoothStep(0.2, 0.36, progress));
-  const trailingLift = lerp(0, -28, smoothStep(0.26, 0.4, progress));
+  const trailingLift = lerp(0, -28, smoothStep(0.26, 0.4, progress));  const highlightStretch = smoothStep(0.14, 0.58, progress);
+  const labelMorph = smoothStep(0.24, 0.72, progress);
+  const highlightChatReveal = smoothStep(0.65, 0.9, progress);
 
-  const highlightDetach = smoothStep(0.22, 0.38, progress);
-  const highlightStretch = smoothStep(0.28, 0.64, progress);
-  const highlightChatReveal = smoothStep(0.5, 0.78, progress);
-
-  const highlightGlow = lerp(24, 68, highlightStretch);
-  const highlightDepth = lerp(38, 82, highlightStretch);
-  const highlightBorder = Math.max(1, lerp(3, 0.6, highlightStretch));
+  const highlightGlow = lerp(20, 60, highlightStretch);
+  const highlightDepth = lerp(32, 78, highlightStretch);
+  const highlightBorder = Math.max(0, lerp(1.4, 0.2, highlightStretch));
 
   const finalReveal = smoothStep(0.68, 0.94, progress);
 
   const stageVector = stageVectorRef.current;
   const finalVector = finalVectorRef.current;
-  const alignProgress = smoothStep(0.6, 0.95, progress);
+  const hasFinal =
+    Math.abs(finalVector.x) > 0.001 || Math.abs(finalVector.y) > 0.001;
+  const travelTarget = hasFinal
+    ? { x: finalVector.x, y: Math.max(finalVector.y, stageVector.y) }
+    : stageVector;
+  const travelProgress = smoothStep(0.08, 0.95, progress);
 
-  const baseTranslateX = stageVector.x * highlightDetach;
-  const baseTranslateY = stageVector.y * highlightDetach;
-  const alignmentTranslateX = (finalVector.x - stageVector.x) * alignProgress;
-  const alignmentTranslateY = (finalVector.y - stageVector.y) * alignProgress;
-  const highlightTranslateX = baseTranslateX + alignmentTranslateX;
-  const highlightTranslateY = baseTranslateY + alignmentTranslateY;
+  const highlightTranslateX = travelTarget.x * travelProgress;
+  const highlightTranslateY = travelTarget.y * travelProgress;
 
   const highlightWidth =
     highlightBase.width > 0 && targetSize.width > 0
@@ -279,72 +367,71 @@ export const TransitionSection: React.FC = () => {
       : undefined;
   const highlightRadius = highlightHeight ? highlightHeight / 2 : undefined;
 
-  const baseWidth = highlightBase.width || 0;
-  const baseHeight = highlightBase.height || 0;
-  const highlightOpacity = 1 - smoothStep(0.65, 0.95, finalReveal);
-
-  const widthOffset =
-    highlightWidth != null && baseWidth > 0 ? (highlightWidth - baseWidth) / 2 : 0;
-  const heightOffset =
-    highlightHeight != null && baseHeight > 0 ? (highlightHeight - baseHeight) / 2 : 0;
+  const highlightOpacity = 1 - smoothStep(0.96, 1, progress);
 
   const highlightStyle: React.CSSProperties = {
     borderWidth: `${highlightBorder}px`,
-    borderColor: `rgba(255, 235, 94, ${Math.max(0, 0.85 - highlightStretch * 0.75)})`,
+    borderColor: `rgba(120, 102, 255, ${Math.max(0, 0.55 - highlightStretch * 0.4)})`,
     background:
       highlightStretch > 0.02
-        ? `linear-gradient(135deg, rgba(76, 37, 160, ${0.56 + highlightStretch * 0.32}) 0%, rgba(48, 16, 135, ${0.48 + highlightStretch * 0.44}) 100%)`
-        : 'rgba(255, 240, 138, 0.12)',
-    boxShadow: `0 ${highlightGlow}px ${highlightDepth}px rgba(13, 0, 77, ${0.18 + highlightStretch * 0.45})`,
-    transform: `translate(${highlightTranslateX - widthOffset}px, ${highlightTranslateY - heightOffset}px)`,
+        ? `linear-gradient(135deg, rgba(122, 100, 255, ${0.94}) 0%, rgba(74, 47, 217, ${0.98}) 100%)`
+        : 'linear-gradient(135deg, #7C65FF 0%, #5632E4 100%)',
+    boxShadow: `0 ${highlightGlow}px ${highlightDepth}px rgba(25, 10, 94, ${0.24 + highlightStretch * 0.35})`,
+    transform: `translate(${highlightTranslateX}px, ${highlightTranslateY}px)`,
     width: highlightWidth ? `${highlightWidth}px` : undefined,
     height: highlightHeight ? `${highlightHeight}px` : undefined,
     borderRadius: highlightRadius ? `${highlightRadius}px` : undefined,
     opacity: highlightOpacity,
   };
 
+  const highlightLabelScale = lerp(1, 0.58, labelMorph);
+  const highlightLabelLift = lerp(0, -10, labelMorph);
+  const highlightLabelOpacity = 1 - smoothStep(0.74, 0.92, progress);
   const highlightLabelStyle: React.CSSProperties = {
-    opacity: 1 - highlightChatReveal,
-    transform: `translateY(${lerp(0, -24, highlightDetach)}px)`,
+    transform: `translateY(${highlightLabelLift}px) scale(${highlightLabelScale})`,
+    opacity: highlightLabelOpacity,
   };
 
   const chatStyle: React.CSSProperties = {
+    transform: `translateY(${lerp(32, 0, highlightChatReveal)}px)`,
     opacity: highlightChatReveal,
+    visibility: highlightChatReveal > 0.02 ? 'visible' : 'hidden',
   };
 
   const placeholderStyle: React.CSSProperties = {
-    opacity: smoothStep(0.56, 0.8, progress),
+    transform: `translateY(${lerp(18, 0, highlightChatReveal)}px)`,
+    opacity: highlightChatReveal,
   };
 
+  const micProgress = smoothStep(0.6, 0.84, progress);
   const micStyle: React.CSSProperties = {
-    opacity: smoothStep(0.6, 0.84, progress),
-    transform: `scale(${0.8 + smoothStep(0.6, 0.84, progress) * 0.2})`,
+    transform: `scale(${0.7 + micProgress * 0.3})`,
+    opacity: highlightChatReveal,
   };
 
-  const sendStyle: React.CSSProperties = {
-    opacity: smoothStep(0.64, 0.88, progress),
-    transform: `scale(${0.8 + smoothStep(0.64, 0.88, progress) * 0.2})`,
-  };
-
+  const finalLayoutScale = lerp(0.98, 1, finalReveal);
+  const finalLayoutOpacity = finalReveal;
+  const finalLayoutVisible = finalLayoutOpacity > 0.02;
   const finalLayoutStyle: React.CSSProperties = {
-    opacity: finalReveal,
-    transform: 'translate(-50%, -50%)',
-    pointerEvents: finalReveal > 0.88 ? 'auto' : 'none',
+    opacity: finalLayoutOpacity,
+    visibility: finalLayoutVisible ? 'visible' : 'hidden',
+    transform: `translate(-50%, -50%) scale(${finalLayoutScale})`,
+    pointerEvents: finalLayoutOpacity > 0.88 ? 'auto' : 'none',
   };
 
   const finalHeadingStyle: React.CSSProperties = {
-    transform: `translateY(${lerp(28, 0, finalReveal)}px)`,
+    transform: `translateY(${lerp(24, 0, finalReveal)}px)`,
+    opacity: smoothStep(0.75, 1, finalReveal),
   };
 
   const finalStatStyle: React.CSSProperties = {
-    transform: `translateY(${lerp(36, 0, finalReveal)}px)`,
+    transform: `translateY(${lerp(32, 0, finalReveal)}px)`,
+    opacity: smoothStep(0.78, 1, finalReveal),
   };
-
-  const finalChatOpacity = smoothStep(0.7, 0.95, finalReveal);
 
   const finalChatStyle: React.CSSProperties = {
     transform: 'translateY(0)',
-    opacity: finalChatOpacity,
+    opacity: smoothStep(0.96, 1, progress),
   };
 
   return (
@@ -378,12 +465,7 @@ export const TransitionSection: React.FC = () => {
                     </svg>
                   </div>
                   <div className={styles.highlightInput} style={placeholderStyle}>
-                    How are you feeling today?
-                  </div>
-                  <div className={styles.highlightArrow} style={sendStyle}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M8 5L18 12L8 19V5Z" fill="currentColor" />
-                    </svg>
+                    Feel better
                   </div>
                 </div>
               </span>
@@ -395,22 +477,21 @@ export const TransitionSection: React.FC = () => {
 
           <div className={styles.finalLayout} style={finalLayoutStyle}>
             <h2 className={styles.finalHeading} style={finalHeadingStyle}>
-              Build a better future for yourself
+              <span>Your mood can improve</span>
+              <span>in 1 conversation</span>
             </h2>
 
             <div className={styles.finalStatRow} style={finalStatStyle}>
-              <div className={styles.finalStatBadge}>
-                <span>87%</span>
+              <div className={styles.finalGraph}>
+                <Image src="/serin-graph.png" alt="Mood improvement graph" width={200} height={160} priority />
               </div>
-              <p className={styles.finalStatCopy}>
-                It&apos;s how your mood can improve in just one conversation.
-              </p>
+              <div className={styles.finalStatValue}>67%</div>
             </div>
             <div
               ref={finalChatRef}
               className={styles.finalChatBar}
               style={finalChatStyle}
-              aria-hidden={finalChatOpacity < 0.1}
+              aria-hidden={finalReveal < 0.1}
             >
               <div className={styles.finalChatMic}>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -424,12 +505,7 @@ export const TransitionSection: React.FC = () => {
                   />
                 </svg>
               </div>
-              <span className={styles.finalChatPlaceholder}>How are you feeling today?</span>
-              <div className={styles.finalChatArrow}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M8 5L18 12L8 19V5Z" fill="currentColor" />
-                </svg>
-              </div>
+              <span className={styles.finalChatPlaceholder}>Feel better</span>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 .transitionWrapper {
   position: relative;
   height: 220vh;
-  background: linear-gradient(180deg, #E8D5FF 0%, #C8A3F0 8%, var(--purple-900) 20%, #0F0080 100%);
+  background: linear-gradient(180deg, #F4F0FF 0%, #E0D7FF 14%, #281B79 48%, #070036 100%);
 }
 
 .transitionSection {
@@ -43,13 +43,13 @@
   font-size: clamp(44px, 6vw, 70px);
   line-height: 1.28;
   font-weight: 500;
-  color: #e8dcff;
+  color: #1A1331;
   margin: 0;
-  display: inline-flex;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(16px, 4vw, 32px);
-  white-space: nowrap;
+  gap: clamp(16px, 4vw, 24px);
 }
 
 .leadingText,
@@ -57,7 +57,7 @@
   display: inline-flex;
   align-items: center;
   font-weight: 500;
-  color: rgba(232, 220, 255, 0.9);
+  color: rgba(26, 19, 49, 0.9);
   transition: opacity 0.3s ease, transform 0.4s ease;
   will-change: transform, opacity;
 }
@@ -69,12 +69,12 @@
   justify-content: center;
   padding: 10px 34px;
   border-radius: 999px;
-  border: 3px solid var(--yellow-400);
-  color: #f1eaff;
-  box-shadow: 0 18px 40px rgba(255, 235, 94, 0.28);
+  border: 2px solid transparent;
+  color: #fff;
+  box-shadow: 0 18px 44px rgba(39, 16, 120, 0.25);
   transform-origin: center;
   will-change: transform, background, box-shadow, border-color, border-width;
-  background: rgba(255, 240, 138, 0.12);
+  background: linear-gradient(135deg, #6B50FF 0%, #4C2FE1 100%);
   overflow: hidden;
   isolation: isolate;
   z-index: 5;
@@ -89,8 +89,9 @@
   font-size: clamp(36px, 4.6vw, 64px);
   letter-spacing: -0.01em;
   color: #fefafb;
-  transition: opacity 0.25s ease, transform 0.35s ease;
-  will-change: opacity, transform;
+  transform-origin: center;
+  transition: transform 0.35s ease, opacity 0.3s ease;
+  will-change: transform, opacity;
 }
 
 .highlightChat {
@@ -99,15 +100,17 @@
   z-index: 1;
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: clamp(14px, 3vw, 28px);
-  padding: clamp(10px, 2vw, 14px) clamp(18px, 4vw, 26px);
-  opacity: 0;
+  justify-content: flex-start;
+  gap: clamp(16px, 3vw, 28px);
+  padding: clamp(10px, 2vw, 14px) clamp(22px, 4.5vw, 30px);
   pointer-events: none;
-  will-change: opacity;
+  will-change: transform, opacity;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  transform: translateY(32px);
+  opacity: 0;
+  transition: opacity 0.35s ease, transform 0.45s ease;
 }
 
 .highlightMic {
@@ -121,37 +124,25 @@
   justify-content: center;
   flex-shrink: 0;
   box-shadow: 0 18px 36px rgba(255, 235, 94, 0.3);
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .highlightInput {
   flex: 1;
-  background: white;
-  color: #311d76;
+  background: transparent;
+  color: #fff;
   border-radius: 999px;
-  padding: clamp(12px, 2.2vw, 16px) clamp(22px, 5vw, 32px);
-  font-family: var(--font-body);
-  font-size: clamp(18px, 2.1vw, 20px);
-  line-height: 1.4;
-  text-align: left;
-  box-shadow: inset 0 0 0 1px rgba(76, 37, 160, 0.12);
-  transition: opacity 0.25s ease;
+  padding: clamp(10px, 2vw, 14px) clamp(18px, 4vw, 28px);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 3.8vw, 36px);
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: -0.01em;
+  transition: opacity 0.25s ease, transform 0.35s ease;
   display: flex;
   align-items: center;
-}
-
-.highlightArrow {
-  width: clamp(52px, 9vw, 64px);
-  height: clamp(52px, 9vw, 64px);
-  border-radius: 50%;
-  background: rgba(239, 233, 255, 0.14);
-  color: rgba(239, 233, 255, 0.92);
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  box-shadow: inset 0 0 0 1px rgba(244, 237, 255, 0.2);
-  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .finalLayout {
@@ -166,8 +157,8 @@
   width: min(720px, 92vw);
   text-align: center;
   pointer-events: none;
-  opacity: 0;
-  will-change: transform, opacity;
+  opacity: 1;
+  will-change: transform;
   z-index: 4;
 }
 
@@ -176,42 +167,48 @@
   font-size: clamp(48px, 6.5vw, 68px);
   line-height: 1.22;
   font-weight: 500;
-  color: #F5F0FF;
+  color: #F7F3FF;
   letter-spacing: -0.01em;
   margin: 0;
   transition: transform 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 12px);
+  text-align: center;
+}
+
+.finalHeading span {
+  display: block;
 }
 
 .finalStatRow {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  gap: clamp(24px, 4vw, 40px);
+  gap: clamp(24px, 5vw, 52px);
   transition: transform 0.4s ease;
 }
 
-.finalStatBadge {
-  width: clamp(110px, 15vw, 148px);
-  height: clamp(110px, 15vw, 148px);
-  border-radius: 50%;
+.finalGraph {
+  width: clamp(180px, 28vw, 240px);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  background: var(--yellow-400);
-  color: var(--purple-900);
-  box-shadow: 0 26px 55px rgba(255, 235, 94, 0.35);
-  font-family: var(--font-display);
-  font-size: clamp(40px, 4.5vw, 52px);
-  font-weight: 700;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.18));
 }
 
-.finalStatCopy {
-  font-size: clamp(18px, 2.2vw, 22px);
-  line-height: 1.6;
-  color: rgba(239, 233, 255, 0.92);
-  max-width: 280px;
-  margin: 0 auto;
-  text-align: center;
+.finalGraph :global(img) {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.finalStatValue {
+  font-family: var(--font-display);
+  font-size: clamp(58px, 8vw, 88px);
+  font-weight: 700;
+  color: var(--yellow-400);
+  text-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
 }
 
 .finalChatBar {
@@ -219,16 +216,16 @@
   height: clamp(80px, 12vw, 104px);
   border-radius: 999px;
   margin-top: clamp(12px, 3vw, 20px);
-  background: linear-gradient(135deg, rgba(76, 37, 160, 0.95), rgba(48, 16, 135, 0.95));
-  box-shadow: 0 36px 80px rgba(13, 0, 77, 0.45);
+  background: linear-gradient(135deg, rgba(71, 33, 210, 0.96), rgba(35, 10, 146, 0.96));
+  box-shadow: 0 36px 80px rgba(9, 0, 70, 0.55);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: clamp(18px, 4vw, 32px);
-  padding: clamp(12px, 2vw, 16px);
-  opacity: 0;
+  padding: clamp(12px, 2vw, 18px) clamp(18px, 4vw, 24px);
   pointer-events: none;
-  will-change: transform, opacity;
+  will-change: transform;
+  opacity: 1;
 }
 
 .finalChatMic {
@@ -246,35 +243,23 @@
 
 .finalChatPlaceholder {
   flex: 1;
-  background: white;
-  color: #311d76;
+  background: transparent;
+  color: #fff;
   border-radius: 999px;
-  padding: clamp(14px, 2.5vw, 18px) clamp(24px, 5vw, 36px);
-  font-family: var(--font-body);
-  font-size: clamp(18px, 2.2vw, 20px);
-  line-height: 1.4;
-  text-align: left;
-  box-shadow: inset 0 0 0 1px rgba(76, 37, 160, 0.12);
-}
-
-.finalChatArrow {
-  width: clamp(58px, 10vw, 68px);
-  height: clamp(58px, 10vw, 68px);
-  border-radius: 50%;
-  background: rgba(239, 233, 255, 0.14);
-  color: rgba(239, 233, 255, 0.92);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: inset 0 0 0 1px rgba(244, 237, 255, 0.2);
+  padding: clamp(10px, 2.4vw, 14px) clamp(16px, 4vw, 24px);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(26px, 4vw, 36px);
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: -0.01em;
 }
 
 /* ========================================
    COMPACT LAYOUT (≤ 900px)
    ======================================== */
 .compactWrapper {
-  background: linear-gradient(180deg, #E8D5FF 0%, #C8A3F0 8%, var(--purple-900) 20%, #0F0080 100%);
+  background: linear-gradient(180deg, #F4F0FF 0%, #E0D7FF 14%, #281B79 48%, #070036 100%);
   padding: var(--space-16) 0 var(--space-20);
   color: white;
   position: relative;
@@ -308,19 +293,17 @@
 .compactChatCard {
   width: 100%;
   max-width: 520px;
-  background: linear-gradient(135deg, rgba(76, 37, 160, 0.95), rgba(48, 16, 135, 0.95));
+  background: linear-gradient(135deg, rgba(71, 33, 210, 0.96), rgba(35, 10, 146, 0.96));
   border-radius: 999px;
-  padding: clamp(12px, 3vw, 18px);
+  padding: clamp(12px, 3vw, 18px) clamp(20px, 6vw, 28px);
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-4);
-  box-shadow: 0 28px 60px rgba(13, 0, 77, 0.45);
+  justify-content: flex-start;
+  gap: clamp(16px, 4vw, 28px);
+  box-shadow: 0 28px 60px rgba(9, 0, 70, 0.55);
 }
 
-.compactMic,
-.compactArrow {
+.compactMic {
   width: clamp(52px, 14vw, 64px);
   height: clamp(52px, 14vw, 64px);
   border-radius: 50%;
@@ -336,57 +319,49 @@
   box-shadow: 0 16px 36px rgba(255, 235, 94, 0.3);
 }
 
-.compactArrow {
-  background: rgba(239, 233, 255, 0.14);
-  color: rgba(239, 233, 255, 0.92);
-  box-shadow: inset 0 0 0 1px rgba(244, 237, 255, 0.2);
-}
-
 .compactPrompt {
-  flex: 1 1 220px;
-  background: white;
-  color: #311d76;
+  flex: 1;
+  background: transparent;
+  color: #fff;
   border-radius: 999px;
-  padding: clamp(12px, 3vw, 18px) clamp(22px, 8vw, 32px);
-  font-family: var(--font-body);
-  font-size: clamp(17px, 4vw, 18px);
-  line-height: 1.4;
+  padding: clamp(10px, 3vw, 14px) clamp(18px, 8vw, 28px);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 6vw, 32px);
+  line-height: 1.2;
   text-align: center;
-  box-shadow: inset 0 0 0 1px rgba(76, 37, 160, 0.12);
+  letter-spacing: -0.01em;
 }
 
 .compactSummary {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-4);
+  justify-content: center;
+  gap: clamp(20px, 6vw, 32px);
   margin-top: var(--space-8);
   width: 100%;
   max-width: 520px;
 }
 
-.compactBadge {
-  width: clamp(96px, 22vw, 128px);
-  height: clamp(96px, 22vw, 128px);
-  border-radius: 50%;
-  background: var(--yellow-400);
-  color: var(--purple-900);
+.compactGraph {
+  width: clamp(140px, 38vw, 200px);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  font-family: var(--font-display);
-  font-size: clamp(36px, 10vw, 48px);
-  font-weight: 700;
-  box-shadow: 0 22px 46px rgba(255, 235, 94, 0.35);
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.18));
 }
 
-.compactCopy {
-  font-size: clamp(17px, 4.2vw, 19px);
-  line-height: 1.6;
-  color: rgba(239, 233, 255, 0.92);
-  max-width: 420px;
-  margin: 0;
-  text-align: center;
+.compactGraph :global(img) {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.compactStat {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 12vw, 70px);
+  font-weight: 700;
+  color: var(--yellow-400);
+  text-shadow: 0 12px 24px rgba(0, 0, 0, 0.22);
 }
 
 @media (min-width: 601px) and (max-width: 900px) {
@@ -404,13 +379,7 @@
   }
 
   .compactSummary {
-    flex-direction: row;
-    justify-content: center;
-    gap: var(--space-6);
-  }
-
-  .compactCopy {
-    text-align: left;
+    gap: clamp(24px, 6vw, 32px);
   }
 }
 
@@ -452,11 +421,6 @@
     text-align: center;
   }
 
-  .highlightArrow {
-    width: clamp(52px, 11vw, 58px);
-    height: clamp(52px, 11vw, 58px);
-  }
-
   .finalStatRow {
     flex-direction: column;
     text-align: center;
@@ -491,32 +455,32 @@
   }
 
   .highlightInput {
-    font-size: 17px;
+    font-size: clamp(22px, 9vw, 30px);
   }
 
   .finalHeading {
     font-size: clamp(38px, 10vw, 46px);
   }
 
-  .finalStatBadge {
-    width: clamp(96px, 22vw, 120px);
-    height: clamp(96px, 22vw, 120px);
-    font-size: clamp(34px, 8vw, 44px);
+  .finalGraph {
+    width: clamp(160px, 48vw, 220px);
   }
 
-  .highlightMic,
-  .highlightArrow {
+  .finalStatValue {
+    font-size: clamp(48px, 14vw, 68px);
+  }
+
+  .highlightMic {
     width: clamp(48px, 14vw, 54px);
     height: clamp(48px, 14vw, 54px);
   }
 
-  .finalChatMic,
-  .finalChatArrow {
+  .finalChatMic {
     width: clamp(50px, 14vw, 56px);
     height: clamp(50px, 14vw, 56px);
   }
 
   .finalChatPlaceholder {
-    font-size: 17px;
+    font-size: clamp(22px, 8vw, 28px);
   }
 }
