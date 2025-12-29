@@ -1,331 +1,235 @@
 .footer {
-  position: relative;
-  width: 100%;
+  background: var(--gray-100);
+  padding: var(--space-16) 0 var(--space-8);
+  border-top: 1px solid var(--gray-200);
 }
 
-/* ========================================
-   UPPER SECTION - Light Purple CTA
-   ======================================== */
-.upperSection {
-  background: linear-gradient(180deg, #EDE9FE 0%, #D5BFEC 15%, #B794F6 40%, #A78BFA 100%);
-  padding: var(--space-24) var(--page-padding) 120px;
-  position: relative;
-  overflow: visible;
-  min-height: 60vh;
+.footerTop {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr 1fr;
+  gap: var(--space-12);
+  padding-bottom: var(--space-12);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+/* Brand Section */
+.brandSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+}
+
+.logoWrapper {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.ctaContent {
-  text-align: center;
-  z-index: 30;
-  position: relative;
-}
-
-.ctaTitle {
-  font-family: var(--font-display);
-  font-size: 96px;
-  line-height: 1.1;
+.logoText {
+  color: white;
   font-weight: 700;
-  color: white;
-  margin: 0 0 var(--space-6);
-  letter-spacing: -0.02em;
-}
-
-.ctaSubtitle {
-  font-size: 24px;
-  line-height: 1.5;
-  color: white;
-  opacity: 0.95;
-  margin: 0 0 var(--space-12);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.ctaButton {
-  display: inline-block;
-  text-decoration: none;
-}
-
-.darkButton {
+  font-size: 14px;
   font-family: var(--font-body);
-  font-size: 20px;
-  font-weight: 600;
-  padding: 18px 48px;
-  border-radius: var(--radius-pill);
-  background: var(--purple-900);
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 24px rgba(24, 0, 173, 0.4);
 }
 
-.darkButton:hover {
-  background: #1A00C0;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(24, 0, 173, 0.5);
-}
-
-/* ========================================
-   DECORATIVE ELEMENTS
-   ======================================== */
-.sparkle1 {
-  position: absolute;
-  top: 15%;
-  left: 10%;
-  font-size: 48px;
-  opacity: 0.7;
-  animation: twinkle 3s ease-in-out infinite;
-}
-
-.sparkle2 {
-  position: absolute;
-  top: 25%;
-  right: 15%;
-  font-size: 40px;
-  opacity: 0.6;
-  animation: twinkle 4s ease-in-out infinite 0.5s;
-}
-
-.sparkle3 {
-  position: absolute;
-  bottom: 20%;
-  right: 20%;
-  font-size: 36px;
-  opacity: 0.7;
-  animation: twinkle 3.5s ease-in-out infinite 1s;
-}
-
-.heart {
-  position: absolute;
-  bottom: 25%;
-  left: 15%;
-  font-size: 44px;
-  opacity: 0.6;
-  animation: float 4s ease-in-out infinite;
-}
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1) rotate(0deg);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.15) rotate(20deg);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-/* ========================================
-   MIDDLE SECTION - Wave Divider with Llama
-   ======================================== */
-.waveSection {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  margin-top: -1px;
-}
-
-.wave {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  display: block;
-}
-
-.llamaContainer {
-  position: absolute;
-  bottom: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 20;
-}
-
-.llamaImage {
-  width: 320px;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  mix-blend-mode: multiply;
-  filter: brightness(1.1);
-}
-
-/* ========================================
-   LOWER SECTION - Dark Purple Social
-   ======================================== */
-.lowerSection {
-  background: var(--purple-900);
-  padding: var(--space-20) var(--page-padding) var(--space-24);
-  text-align: center;
-}
-
-.socialTitle {
-  font-family: var(--font-display);
-  font-size: 64px;
-  line-height: 1.2;
+.brandName {
+  font-family: var(--font-body);
+  font-size: 18px;
   font-weight: 700;
-  color: white;
-  margin: 0 0 var(--space-12);
-  letter-spacing: -0.02em;
+  color: var(--gray-900);
 }
 
 .socialIcons {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-8);
+  gap: var(--space-3);
 }
 
 .socialIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 64px;
-  color: white;
-  transition: all 0.3s ease;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  color: var(--gray-600);
+  transition: all 0.2s ease;
 }
 
 .socialIcon:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.2);
+  color: var(--gray-900);
+  background: var(--gray-200);
 }
 
-.socialIcon svg {
-  width: 36px;
-  height: 36px;
+/* Navigation Section */
+.navSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
+.navTitle {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-500);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
 
-/* Tablet */
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.navLink {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--gray-600);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--purple-700);
+}
+
+/* Questions Section */
+.questionsSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-900);
+  text-decoration: none;
+}
+
+.email:hover {
+  color: var(--purple-700);
+}
+
+.emailIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--purple-100);
+  color: var(--purple-700);
+}
+
+.questionsText {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--gray-500);
+  margin: 0;
+}
+
+.privacyLink {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  margin-top: var(--space-2);
+}
+
+.privacyLink:hover {
+  color: var(--gray-600);
+}
+
+/* Language Section */
+.languageSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.languageSelector {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--gray-600);
+}
+
+.globeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-500);
+}
+
+/* Footer Bottom */
+.footerBottom {
+  padding-top: var(--space-6);
+  text-align: center;
+}
+
+.copyright {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--gray-400);
+  margin: 0;
+}
+
+/* Tablet breakpoint */
 @media (max-width: 900px) {
-  .upperSection {
-    min-height: 50vh;
-    padding: var(--space-20) var(--page-padding);
+  .footerTop {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
   }
 
-  .ctaTitle {
-    font-size: 72px;
-  }
-
-  .ctaSubtitle {
-    font-size: 20px;
-  }
-
-  .darkButton {
-    font-size: 18px;
-    padding: 16px 40px;
-  }
-
-  .sparkle1, .sparkle2, .sparkle3 {
-    font-size: 32px;
-  }
-
-  .heart {
-    font-size: 36px;
-  }
-
-  .llamaImage {
-    width: 260px;
-  }
-
-  .socialTitle {
-    font-size: 52px;
-  }
-
-  .socialIcon {
-    width: 56px;
-    height: 56px;
-  }
-
-  .socialIcon svg {
-    width: 32px;
-    height: 32px;
+  .brandSection {
+    grid-column: span 2;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
-/* Mobile */
+/* Mobile breakpoint */
 @media (max-width: 600px) {
-  .upperSection {
-    min-height: 40vh;
-    padding: var(--space-16) var(--page-padding);
+  .footer {
+    padding: var(--space-12) 0 var(--space-6);
   }
 
-  .ctaTitle {
-    font-size: 52px;
+  .footerTop {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
   }
 
-  .ctaSubtitle {
-    font-size: 18px;
-    max-width: 90%;
+  .brandSection {
+    grid-column: span 1;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .darkButton {
-    font-size: 16px;
-    padding: 14px 32px;
-  }
-
-  .sparkle1, .sparkle2, .sparkle3 {
-    font-size: 24px;
-    animation: none;
-  }
-
-  .heart {
-    font-size: 28px;
-    animation: none;
-  }
-
-  .waveSection {
-    height: 150px;
-  }
-
-  .wave {
-    height: 150px;
-  }
-
-  .llamaImage {
-    width: 200px;
-  }
-
-  .lowerSection {
-    padding: var(--space-16) var(--page-padding) var(--space-20);
-  }
-
-  .socialTitle {
-    font-size: 40px;
-    margin-bottom: var(--space-8);
-  }
-
-  .socialIcons {
-    gap: var(--space-4);
-  }
-
-  .socialIcon {
-    width: 48px;
-    height: 48px;
-  }
-
-  .socialIcon svg {
-    width: 28px;
-    height: 28px;
+  .questionsText {
+    display: none;
   }
 }

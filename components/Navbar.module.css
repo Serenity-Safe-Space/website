@@ -4,9 +4,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 1px solid rgba(158, 100, 216, 0.1);
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid var(--gray-200);
 }
 
 .navContent {
@@ -20,125 +18,195 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-2);
   text-decoration: none;
 }
 
-.logo {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
+.logoWrapper {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoText {
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: var(--font-body);
 }
 
 .brandName {
-  font-family: var(--font-display);
-  font-size: 48px;
+  font-family: var(--font-body);
+  font-size: 20px;
   font-weight: 700;
-  color: var(--purple-900);
+  color: var(--purple-700);
   letter-spacing: -0.01em;
+}
+
+/* Center - Navigation Links */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.navLink {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-600);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--purple-700);
 }
 
 /* Right side */
 .navRight {
   display: flex;
   align-items: center;
-  gap: var(--space-8);
-}
-
-/* Social Icons */
-.socialIcons {
-  display: flex;
-  align-items: center;
   gap: var(--space-4);
 }
 
-.iconLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: var(--purple-900);
-  transition: all 0.2s ease;
-  background: transparent;
-}
-
-.iconLink:hover {
-  background: var(--surface);
-  transform: translateY(-2px);
-}
-
-.iconLink svg {
-  width: 24px;
-  height: 24px;
-}
-
-/* CTA Link */
-.ctaLink {
+.loginLink {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-600);
   text-decoration: none;
-  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-pill);
+  transition: all 0.2s ease;
+}
+
+.loginLink:hover {
+  border-color: var(--gray-400);
+  color: var(--gray-900);
+}
+
+.ctaButton {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  padding: 8px 20px;
+  background: var(--purple-700);
+  border-radius: var(--radius-pill);
+  transition: all 0.2s ease;
+}
+
+.ctaButton:hover {
+  background: var(--purple-900);
+  transform: translateY(-1px);
+}
+
+/* Mobile Menu Button - hidden on desktop */
+.mobileMenuBtn {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--gray-600);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  display: none;
+  flex-direction: column;
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--gray-200);
+  margin-top: var(--space-4);
+}
+
+.mobileNavLink {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gray-600);
+  text-decoration: none;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.mobileNavLink:hover {
+  color: var(--purple-700);
+}
+
+.mobileAuthButtons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.mobileLoginLink {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gray-600);
+  text-decoration: none;
+  text-align: center;
+  padding: var(--space-3);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-pill);
+}
+
+.mobileCta {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: var(--space-3);
+  background: var(--purple-700);
+  border-radius: var(--radius-pill);
 }
 
 /* Tablet breakpoint */
 @media (max-width: 900px) {
-  .brandName {
-    font-size: 28px;
-  }
-
-  .logo {
-    width: 50px;
-    height: 50px;
+  .navLinks {
+    display: none;
   }
 
   .navRight {
-    gap: var(--space-4);
+    display: none;
   }
 
-  .socialIcons {
-    gap: var(--space-2);
+  .mobileMenuBtn {
+    display: block;
   }
 
-  .iconLink {
-    width: 36px;
-    height: 36px;
-  }
-
-  .iconLink svg {
-    width: 20px;
-    height: 20px;
+  .mobileMenu {
+    display: flex;
   }
 }
 
 /* Mobile breakpoint */
 @media (max-width: 600px) {
   .navbar {
-    padding: var(--space-2) 0;
+    padding: var(--space-3) 0;
   }
 
   .brandName {
-    font-size: 24px;
+    font-size: 18px;
   }
 
-  .logo {
-    width: 45px;
-    height: 45px;
+  .logoWrapper {
+    width: 28px;
+    height: 28px;
   }
 
-  .socialIcons {
-    display: none;
-  }
-
-  .navRight {
-    gap: var(--space-2);
-  }
-}
-
-/* Show only 2 icons on small tablets */
-@media (max-width: 700px) and (min-width: 601px) {
-  .iconLink:nth-child(3),
-  .iconLink:nth-child(4) {
-    display: none;
+  .logoText {
+    font-size: 14px;
   }
 }

@@ -1,26 +1,21 @@
 import { Hero } from '@/components/Hero';
-import { TransitionSection } from '@/components/TransitionSection';
-import { Testimonials } from '@/components/Testimonials';
+import { HabitBuilder } from '@/components/HabitBuilder';
+import { ContactForm } from '@/components/ContactForm';
 import { Footer } from '@/components/Footer';
 
 export default function Home() {
   return (
     <main>
-      {/* Hero Section */}
-      <Hero
-        title="It's okay to not be okay."
-        subtitle="Private. Safe. Always here when you need to talk."
-        ctaText="Chat now"
-        ctaLink="https://app.chatwithserin.com"
-      />
+      {/* Hero Section with Feature Cards */}
+      <Hero />
 
-      {/* Transition/Animation Section */}
-      <TransitionSection />
+      {/* Habit Builder Section */}
+      <HabitBuilder />
 
-      {/* Testimonials Section */}
-      <Testimonials />
+      {/* Contact Form / Beta Section */}
+      <ContactForm />
 
-      {/* Footer/Final CTA Section */}
+      {/* Footer */}
       <Footer />
     </main>
   );

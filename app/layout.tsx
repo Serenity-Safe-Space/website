@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Inter, Nunito } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 
@@ -9,9 +9,9 @@ const inter = Inter({
   display: "swap",
 });
 
-const poppins = Poppins({
-  variable: "--font-poppins",
-  weight: ["400", "600", "700"],
+const nunito = Nunito({
+  variable: "--font-nunito",
+  weight: ["400", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${poppins.variable}`}>
+      <body className={`${inter.variable} ${nunito.variable}`}>
         <Navbar />
         {children}
       </body>
