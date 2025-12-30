@@ -87,9 +87,14 @@
   /* ========================================
      LAYOUT
      ======================================== */
-  --container-max: 1200px;
-  --page-padding: clamp(16px, 4vw, 40px);
+  --container-max: 1120px;
+  --page-padding: 24px;
   --grid-gap: 24px;
+
+  /* Button sizing system */
+  --btn-height: 44px;
+  --btn-padding-x: 20px;
+  --btn-font-size: 14px;
 
   /* ========================================
      CORNERS & SHADOWS
@@ -103,6 +108,13 @@
      ======================================== */
   --bp-tablet: 900px;
   --bp-mobile: 600px;
+}
+
+/* Desktop layout adjustments */
+@media (min-width: 1024px) {
+  :root {
+    --page-padding: 32px;
+  }
 }
 
 /* Mobile typography adjustments */

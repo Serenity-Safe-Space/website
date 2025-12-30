@@ -1,19 +1,19 @@
 .section {
-  padding: var(--space-20) 0;
+  padding: var(--space-16) 0;
   background: var(--bg);
 }
 
 .wrapper {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--space-16);
+  justify-content: center;
+  gap: var(--space-12);
 }
 
 /* Left side - Copy */
 .content {
-  flex: 1;
-  max-width: 480px;
+  flex: 0 1 520px;
+  max-width: 520px;
 }
 
 .badge {
@@ -109,16 +109,16 @@
 
 /* Right side - Form */
 .formWrapper {
-  flex-shrink: 0;
-  width: 100%;
-  max-width: 400px;
+  flex: 0 1 480px;
+  max-width: 480px;
 }
 
 .form {
   background: var(--bg);
   border: 1px solid var(--gray-200);
-  border-radius: 16px;
-  padding: var(--space-8);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-soft);
 }
 
 .formGroup {
@@ -167,13 +167,14 @@
 .submitButton {
   width: 100%;
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: var(--btn-font-size);
   font-weight: 600;
   color: white;
   background: var(--purple-700);
   border: none;
   border-radius: var(--radius-pill);
-  padding: 14px 28px;
+  height: var(--btn-height);
+  padding: 0 var(--btn-padding-x);
   cursor: pointer;
   transition: all 0.2s ease;
 }

@@ -13,14 +13,14 @@
 .heroContent {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-12);
+  justify-content: center;
+  gap: var(--space-16);
 }
 
 /* Left side - Copy */
 .copy {
-  flex: 1;
-  max-width: 480px;
+  flex: 0 1 520px;
+  max-width: 520px;
 }
 
 .title {
@@ -52,15 +52,18 @@
 }
 
 .ctaButton {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: var(--btn-font-size);
   font-weight: 600;
   color: white;
   text-decoration: none;
-  padding: 12px 24px;
+  height: var(--btn-height);
+  padding: 0 var(--btn-padding-x);
   background: var(--purple-700);
-  border-radius: 8px;
+  border-radius: var(--radius-pill);
   transition: all 0.2s ease;
 }
 
@@ -71,12 +74,12 @@
 
 /* Right side - Illustration */
 .illustration {
-  flex-shrink: 0;
+  flex: 0 0 auto;
 }
 
 .llamaCircle {
-  width: clamp(220px, 28vw, 300px);
-  height: clamp(220px, 28vw, 300px);
+  width: clamp(180px, 22vw, 250px);
+  height: clamp(180px, 22vw, 250px);
   border-radius: 50%;
   background: linear-gradient(135deg, #4e3891 0%, #3c2a73 100%);
   overflow: hidden;
@@ -97,16 +100,18 @@
 .featureCards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-6);
+  max-width: 100%;
 }
 
 .featureCard {
   background: #FFF9F5;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 12px;
-  padding: var(--space-4);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
   display: flex;
   flex-direction: column;
+  box-shadow: var(--shadow-soft);
 }
 
 /* Card Mockup Area */
@@ -115,7 +120,7 @@
   border-radius: 10px;
   padding: var(--space-4);
   margin-bottom: var(--space-4);
-  min-height: 140px;
+  height: 130px;
   border: 1px solid rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
@@ -314,10 +319,13 @@
   .heroContent {
     flex-direction: column;
     text-align: center;
+    gap: var(--space-8);
   }
 
   .copy {
-    max-width: 100%;
+    flex: none;
+    max-width: 560px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -331,10 +339,19 @@
     max-width: 400px;
   }
 
+  .illustration {
+    flex: none;
+  }
+
+  .llamaCircle {
+    width: 220px;
+    height: 220px;
+  }
+
   .featureCards {
-    grid-template-columns: 1fr;
-    max-width: 360px;
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 100%;
+    margin: 0;
   }
 }
 
@@ -348,13 +365,23 @@
     gap: var(--space-10);
   }
 
+  .heroContent {
+    gap: var(--space-6);
+  }
+
   .title {
     font-size: 32px;
   }
 
   .llamaCircle {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
+  }
+
+  .featureCards {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
   }
 
   .cardMockup {
