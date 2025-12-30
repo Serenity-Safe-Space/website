@@ -41,9 +41,9 @@ public/
 
 ```css
 /* Primary */
---purple-700: #6B46C1;    /* Primary purple (buttons, accents) */
---purple-500: #7C3AED;    /* Gradient purple */
---purple-900: #4A249D;    /* Deep purple */
+--purple-700: #3c2a73;    /* Primary purple (buttons, accents) */
+--purple-500: #4e3891;    /* Gradient purple */
+--purple-900: #2d1f57;    /* Deep purple */
 
 /* Accent */
 --orange-500: #F97316;    /* Orange for highlights */

@@ -78,12 +78,12 @@
   width: clamp(220px, 28vw, 300px);
   height: clamp(220px, 28vw, 300px);
   border-radius: 50%;
-  background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+  background: linear-gradient(135deg, #4e3891 0%, #3c2a73 100%);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 0 8px rgba(124, 58, 237, 0.1);
+  box-shadow: 0 0 0 8px rgba(60, 42, 115, 0.1);
 }
 
 .llamaImage {
