@@ -22,7 +22,6 @@ export const Navbar: React.FC = () => {
           {/* Center - Navigation Links (Desktop) */}
           <div className={styles.navLinks}>
             <Link href="#features" className={styles.navLink}>Features</Link>
-            <Link href="#community" className={styles.navLink}>Community</Link>
             <Link href="#support" className={styles.navLink}>Support</Link>
           </div>
 
@@ -57,9 +56,6 @@ export const Navbar: React.FC = () => {
           <div className={styles.mobileMenu}>
             <Link href="#features" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
               Features
-            </Link>
-            <Link href="#community" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
-              Community
             </Link>
             <Link href="#support" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
               Support

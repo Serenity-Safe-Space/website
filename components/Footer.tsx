@@ -77,7 +77,6 @@ export const Footer: React.FC = () => {
             <h4 className={styles.navTitle}>NAVIGATION</h4>
             <nav className={styles.navLinks}>
               <Link href="#features" className={styles.navLink}>Features</Link>
-              <Link href="#community" className={styles.navLink}>Community</Link>
             </nav>
           </div>
 
@@ -96,7 +95,6 @@ export const Footer: React.FC = () => {
             <p className={styles.questionsText}>
               For questions or collaboration, don&apos;t hesitate to contact our team.
             </p>
-            <Link href="/privacy" className={styles.privacyLink}>PRIVACY POLICY</Link>
           </div>
 
           {/* Language */}
@@ -118,7 +116,7 @@ export const Footer: React.FC = () => {
         {/* Copyright */}
         <div className={styles.footerBottom}>
           <p className={styles.copyright}>
-            &copy; 2024 Serin
+            &copy; 2025 Serin
           </p>
         </div>
       </div>
