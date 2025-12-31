@@ -113,11 +113,15 @@
 
 .fireIcon {
   margin: var(--space-4) 0;
+  display: flex;
+  justify-content: center;
 }
 
-.fireIcon svg {
+.fireImage {
   width: 64px;
   height: 64px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
 .streakNumber {
@@ -222,7 +226,7 @@
     max-width: 260px;
   }
 
-  .fireIcon svg {
+  .fireImage {
     width: 48px;
     height: 48px;
   }

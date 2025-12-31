@@ -22,12 +22,12 @@ export const Navbar: React.FC = () => {
           {/* Center - Navigation Links (Desktop) */}
           <div className={styles.navLinks}>
             <Link href="#features" className={styles.navLink}>Features</Link>
-            <Link href="#support" className={styles.navLink}>Support</Link>
+            <Link href="#support" className={styles.navLink}>Contact Us</Link>
           </div>
 
           {/* Right side - Auth buttons */}
           <div className={styles.navRight}>
-            <Link href="https://app.chatwithserin.com" className={styles.loginLink}>
+            <Link href="https://app.chatwithserin.com/login" className={styles.loginLink}>
               Log In
             </Link>
             <a href="https://app.chatwithserin.com" className={styles.ctaButton}>
@@ -58,10 +58,10 @@ export const Navbar: React.FC = () => {
               Features
             </Link>
             <Link href="#support" className={styles.mobileNavLink} onClick={() => setMobileMenuOpen(false)}>
-              Support
+              Contact Us
             </Link>
             <div className={styles.mobileAuthButtons}>
-              <Link href="https://app.chatwithserin.com" className={styles.mobileLoginLink}>
+              <Link href="https://app.chatwithserin.com/login" className={styles.mobileLoginLink}>
                 Log In
               </Link>
               <a href="https://app.chatwithserin.com" className={styles.mobileCta}>

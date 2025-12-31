@@ -53,7 +53,7 @@ export const ContactForm: React.FC = () => {
               </span>
             </div>
 
-            <div className={styles.contactInfo}>
+            <div className={styles.contactInfoDesktop}>
               <span className={styles.contactLabel}>QUESTIONS?</span>
               <a href="mailto:hello@chatwithserin.app" className={styles.email}>
                 <span className={styles.emailIcon}>@</span>
@@ -114,6 +114,14 @@ export const ContactForm: React.FC = () => {
                 Send to the Team 🚀
               </button>
             </form>
+
+            <div className={styles.contactInfoMobile}>
+              <span className={styles.contactLabel}>QUESTIONS?</span>
+              <a href="mailto:hello@chatwithserin.app" className={styles.email}>
+                <span className={styles.emailIcon}>@</span>
+                hello@chatwithserin.app
+              </a>
+            </div>
           </div>
         </div>
       </div>

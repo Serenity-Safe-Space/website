@@ -32,10 +32,8 @@ export const HabitBuilder: React.FC = () => {
               <p className={styles.streakSubtitle}>You&apos;re building a solid habit.</p>
 
               <div className={styles.fireIcon}>
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 23C16.1421 23 19.5 19.6421 19.5 15.5C19.5 13.5 18.5 11.5 17 10C16.5 9.5 16 9 15.5 8C15 7 14.5 6 14 5C13.5 4 12.5 2.5 12 2C11.5 2.5 10.5 4 10 5C9.5 6 9 7 8.5 8C8 9 7.5 9.5 7 10C5.5 11.5 4.5 13.5 4.5 15.5C4.5 19.6421 7.85786 23 12 23Z" fill="#F97316" stroke="#F97316" strokeWidth="2"/>
-                  <path d="M12 19C13.6569 19 15 17.6569 15 16C15 15 14.5 14 14 13.5C13.5 13 13 12.5 12.5 11.5C12.25 11 12 10.5 12 10C12 10.5 11.75 11 11.5 11.5C11 12.5 10.5 13 10 13.5C9.5 14 9 15 9 16C9 17.6569 10.3431 19 12 19Z" fill="#FED7AA"/>
-                </svg>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/fire.JPG" alt="Fire streak" className={styles.fireImage} />
               </div>
 
               <div className={styles.streakNumber}>12</div>
