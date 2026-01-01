@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Navbar.module.css';
 
 export const Navbar: React.FC = () => {
@@ -13,9 +14,13 @@ export const Navbar: React.FC = () => {
         <div className={styles.navContent}>
           {/* Left side - Logo + Brand */}
           <Link href="/" className={styles.brand}>
-            <div className={styles.logoWrapper}>
-              <span className={styles.logoText}>S</span>
-            </div>
+            <Image
+              src="/serin-hero-llama.png"
+              alt="Serin"
+              width={40}
+              height={40}
+              className={styles.logoImage}
+            />
             <span className={styles.brandName}>Serin</span>
           </Link>
 
@@ -27,7 +32,7 @@ export const Navbar: React.FC = () => {
 
           {/* Right side - Auth buttons */}
           <div className={styles.navRight}>
-            <Link href="https://app.chatwithserin.com/login" className={styles.loginLink}>
+            <Link href="https://app.chatwithserin.com" className={styles.loginLink}>
               Log In
             </Link>
             <a href="https://app.chatwithserin.com" className={styles.ctaButton}>
@@ -61,7 +66,7 @@ export const Navbar: React.FC = () => {
               Contact Us
             </Link>
             <div className={styles.mobileAuthButtons}>
-              <Link href="https://app.chatwithserin.com/login" className={styles.mobileLoginLink}>
+              <Link href="https://app.chatwithserin.com" className={styles.mobileLoginLink}>
                 Log In
               </Link>
               <a href="https://app.chatwithserin.com" className={styles.mobileCta}>

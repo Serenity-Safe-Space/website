@@ -23,21 +23,10 @@
   text-decoration: none;
 }
 
-.logoWrapper {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--purple-700), var(--purple-500));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logoText {
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
-  font-family: var(--font-body);
+.logoImage {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .brandName {
@@ -213,12 +202,8 @@
     font-size: 18px;
   }
 
-  .logoWrapper {
-    width: 28px;
-    height: 28px;
-  }
-
-  .logoText {
-    font-size: 14px;
+  .logoImage {
+    width: 36px;
+    height: 36px;
   }
 }
