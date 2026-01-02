@@ -46,10 +46,10 @@ export const ContactForm: React.FC = () => {
 
             <div className={styles.badges}>
               <span className={styles.featureBadge}>
-                <span>⭐</span> Share Your Vision 💡
+                Share Your Vision 💡
               </span>
               <span className={styles.featureBadge}>
-                <span>🎯</span> Squash Bugs 🐛
+                🎯 Squash Bugs
               </span>
             </div>
 
