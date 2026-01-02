@@ -8,10 +8,6 @@ export const HabitBuilder: React.FC = () => {
         <div className={styles.card}>
           {/* Left side - Copy */}
           <div className={styles.content}>
-            <span className={styles.badge}>
-              <span className={styles.badgeIcon}>+</span>
-              HABIT BUILDER
-            </span>
             <h2 className={styles.title}>
               Build a habit in{' '}
               <span className={styles.highlight}>2 minutes</span> a day.

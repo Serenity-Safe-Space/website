@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Footer.module.css';
 
 export const Footer: React.FC = () => {
@@ -10,9 +11,13 @@ export const Footer: React.FC = () => {
           {/* Logo and Social */}
           <div className={styles.brandSection}>
             <Link href="/" className={styles.brand}>
-              <div className={styles.logoWrapper}>
-                <span className={styles.logoText}>S</span>
-              </div>
+              <Image
+                src="/serin-hero-llama.png"
+                alt="Serin"
+                width={40}
+                height={40}
+                className={styles.logo}
+              />
               <span className={styles.brandName}>Serin</span>
             </Link>
 

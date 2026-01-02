@@ -27,6 +27,12 @@
   text-decoration: none;
 }
 
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
 .logoWrapper {
   width: 28px;
   height: 28px;

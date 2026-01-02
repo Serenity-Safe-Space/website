@@ -29,11 +29,6 @@ export const ContactForm: React.FC = () => {
         <div className={styles.wrapper}>
           {/* Left side - Copy */}
           <div className={styles.content}>
-            <span className={styles.badge}>
-              <span className={styles.badgeIcon}>+</span>
-              Open Beta
-            </span>
-
             <h2 className={styles.title}>
               Build Serin with us.
             </h2>
@@ -46,7 +41,7 @@ export const ContactForm: React.FC = () => {
 
             <div className={styles.badges}>
               <span className={styles.featureBadge}>
-                Share Your Vision 💡
+                💡 Share Your Vision
               </span>
               <span className={styles.featureBadge}>
                 🎯 Squash Bugs

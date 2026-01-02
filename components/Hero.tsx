@@ -41,20 +41,14 @@ export const Hero: React.FC = () => {
           {/* Card 1 - Support your friends */}
           <div className={styles.featureCard}>
             <div className={styles.cardMockup}>
-              <div className={styles.mockupHeader}>
-                <span className={styles.mockupLabel}>SQUAD VIBES</span>
-                <span className={styles.mockupIcon}>💜</span>
-              </div>
               <div className={styles.mockupContent}>
                 <div className={styles.chatBubbleYellow}>
                   <span className={styles.bubbleAvatarYellow}>😊</span>
                   <span className={styles.bubbleTextDark}>Leo boosted you!</span>
-                  <span className={styles.bubbleEmoji}>🎉</span>
                 </div>
                 <div className={styles.chatBubblePurple}>
                   <span className={styles.bubbleAvatarPurple}>⭐</span>
                   <span className={styles.bubbleTextDark}>Kai sent a reaction</span>
-                  <span className={styles.bubbleEmoji}>🔥</span>
                 </div>
               </div>
             </div>
@@ -67,12 +61,6 @@ export const Hero: React.FC = () => {
           {/* Card 2 - Private Chat & Vent */}
           <div className={styles.featureCard}>
             <div className={styles.cardMockup}>
-              <div className={styles.mockupHeader}>
-                <span className={styles.mockupBadge}>
-                  <span className={styles.lockIcon}>🔒</span>
-                  ENCRYPTED & PRIVATE
-                </span>
-              </div>
               <div className={styles.mockupContent}>
                 <div className={styles.privateChatRow}>
                   <span className={styles.serinAvatarGreen}>S</span>

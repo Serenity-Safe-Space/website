@@ -223,7 +223,7 @@
   }
 
   .description {
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-12);
   }
 
   .streakCard {
@@ -240,8 +240,8 @@
   }
 
   .fireImage {
-    width: 48px;
-    height: 48px;
+    width: 72px;
+    height: 72px;
   }
 
   .streakNumber {
