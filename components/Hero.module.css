@@ -262,7 +262,8 @@
 .streakContent {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: var(--space-6);
   flex: 1;
   padding-top: var(--space-2);
 }
@@ -274,7 +275,7 @@
 }
 
 .fireIconLarge {
-  font-size: 20px;
+  font-size: 28px;
 }
 
 .streakCountOrange {
@@ -374,6 +375,11 @@
 
   .title {
     font-size: 32px;
+    margin-bottom: var(--space-6);
+  }
+
+  .subtitle {
+    margin-bottom: var(--space-8);
   }
 
   .llamaCircle {
@@ -385,9 +391,19 @@
     grid-template-columns: 1fr;
     max-width: 320px;
     margin: 0 auto;
+    gap: var(--space-8);
+  }
+
+  .featureCard {
+    width: 100%;
   }
 
   .cardMockup {
     min-height: 120px;
+    margin-bottom: 20px;
+  }
+
+  .cardTitle {
+    margin-bottom: var(--space-2);
   }
 }
